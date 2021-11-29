@@ -14,7 +14,7 @@ html {
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
-  height: 100vh;
+  min-height: 100vh;
   color: #333;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   display: flex;
@@ -23,6 +23,10 @@ body {
 }
 
 /* LAYOUT */
+
+.hidden {
+  display: none;
+}
 
 .winner-wrapper {
   position: absolute;
