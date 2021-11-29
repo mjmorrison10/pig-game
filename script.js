@@ -107,7 +107,7 @@ function resetGame() {
       ? sectionPlayer[i].classList.add('player--active')
       : sectionPlayer[i].classList.remove('player--active');
   }
-
+  playing = true;
   playersCurrentScore[0] = 0;
   playersCurrentScore[1] = 0;
   playersHoldScore[0] = 0;
