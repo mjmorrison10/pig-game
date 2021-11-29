@@ -10,13 +10,26 @@ const winnerWrapper = document.querySelector('.winner-wrapper');
 const newGame = document.querySelector('.btn--new');
 const sectionPlayer = document.querySelectorAll('.player');
 
-let currentPlayer = 0;
-const playersCurrentScore = [0, 0];
-const playersHoldScore = [0, 0];
-let playing = true;
+let currentPlayer, playersCurrentScore, playersHoldScore, playing;
 
-playerOneScore.textContent = playersCurrentScore[0];
-playerTwoScore.textContent = playersCurrentScore[1];
+function resetGame() {
+  for (let i = 0; i < sectionPlayer.length; i++) {
+    sectionPlayer[i] == sectionPlayer[0]
+      ? sectionPlayer[i].classList.add('player--active')
+      : sectionPlayer[i].classList.remove('player--active');
+  }
+  currentPlayer = 0;
+  playersCurrentScore = [0, 0];
+  playersHoldScore = [0, 0];
+  playing = true;
+  playerOneScore.textContent = playersCurrentScore[0];
+  playerTwoScore.textContent = playersCurrentScore[1];
+  playerOne.textContent = 0;
+  playerTwo.textContent = 0;
+  winnerWrapper.style.display = 'none';
+}
+
+resetGame();
 
 function holdScore() {
   if (playing) {
@@ -100,30 +113,6 @@ function DiceRoll() {
   }
 }
 
-
-function resetGame() {
-  for (let i = 0; i < sectionPlayer.length; i++) {
-    sectionPlayer[i] == sectionPlayer[0]
-      ? sectionPlayer[i].classList.add('player--active')
-      : sectionPlayer[i].classList.remove('player--active');
-  }
-  playing = true;
-  playersCurrentScore[0] = 0;
-  playersCurrentScore[1] = 0;
-  playersHoldScore[0] = 0;
-  playersHoldScore[1] = 0;
-  playerOne.textContent = 0;
-  playerTwo.textContent = 0;
-  playerOneScore.textContent = 0;
-  playerTwoScore.textContent = 0;
-  winnerWrapper.style.display = 'none';
-}
-
 rollDice.addEventListener('click', DiceRoll);
 holdBtn.addEventListener('click', holdScore);
 newGame.addEventListener('click', resetGame);
-
-
-
-
-
