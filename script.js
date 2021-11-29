@@ -12,7 +12,7 @@ const sectionPlayer = document.querySelectorAll('.player');
 
 let currentPlayer = 0;
 const playersCurrentScore = [0, 0];
-const playersHoldScore = [99, 99];
+const playersHoldScore = [0, 0];
 
 playerOneScore.textContent = playersCurrentScore[0];
 playerTwoScore.textContent = playersCurrentScore[1];
