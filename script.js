@@ -12,7 +12,7 @@ const sectionPlayer = document.querySelectorAll('.player');
 
 let currentPlayer = 0;
 const playersCurrentScore = [0, 0];
-const playersHoldScore = [0, 0];
+const playersHoldScore = [99, 99];
 
 playerOneScore.textContent = playersCurrentScore[0];
 playerTwoScore.textContent = playersCurrentScore[1];
@@ -36,26 +36,18 @@ function togglePlayerSection() {
 }
 
 function switchPlayer() {
-  if (currentPlayer === 0) {
-    console.log('The current player is now 1');
-    currentPlayer = 1;
-    togglePlayerSection();
-  } else {
-    console.log('The current player is now 0');
-    currentPlayer = 0;
-    togglePlayerSection();
-  }
+  currentPlayer === 0
+    ? ((currentPlayer = 1), togglePlayerSection())
+    : ((currentPlayer = 0), togglePlayerSection());
 }
 
 function increasePoints(randomNumber) {
   checkWinner();
-  if (currentPlayer === 0) {
-    playersCurrentScore[0] += randomNumber;
-    playerOne.textContent = playersCurrentScore[0];
-  } else {
-    playersCurrentScore[1] += randomNumber;
-    playerTwo.textContent = playersCurrentScore[1];
-  }
+  currentPlayer === 0
+    ? ((playersCurrentScore[0] += randomNumber),
+      (playerOne.textContent = playersCurrentScore[0]))
+    : ((playersCurrentScore[1] += randomNumber),
+      (playerTwo.textContent = playersCurrentScore[1]));
 }
 
 winnerWrapper.addEventListener('click', () => {
@@ -75,11 +67,6 @@ function checkWinner() {
   if (playersHoldScore[0] >= 100) {
     winnerWrapper.style.display = 'flex';
     winnerWrapp();
-    // winnerWrapper.children[0].innerHTML =
-    //   currentPlayer === 0
-    // ? 'Player 2 is the winner!'
-    // : 'Player 1 is the winner!';
-    // return;
   } else if (playersHoldScore[1] >= 100) {
     winnerWrapper.style.display = 'flex';
     winnerWrapp();
@@ -104,6 +91,12 @@ function DiceRoll() {
 }
 
 function resetGame() {
+  for (let i = 0; i < sectionPlayer.length; i++) {
+    sectionPlayer[i] == sectionPlayer[0]
+      ? sectionPlayer[i].classList.add('player--active')
+      : sectionPlayer[i].classList.remove('player--active');
+  }
+
   dice.classList.add('hidden');
   playersCurrentScore[0] = 0;
   playersCurrentScore[1] = 0;
