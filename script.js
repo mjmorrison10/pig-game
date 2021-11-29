@@ -8,6 +8,7 @@ const playerOneScore = document.querySelector('#score--0');
 const playerTwoScore = document.querySelector('#score--1');
 const winnerWrapper = document.querySelector('.winner-wrapper');
 const newGame = document.querySelector('.btn--new');
+const sectionPlayer = document.querySelectorAll('.player');
 
 let currentPlayer = 0;
 const playersCurrentScore = [0, 0];
@@ -28,13 +29,21 @@ function holdScore() {
   checkWinner();
 }
 
+function togglePlayerSection() {
+  for (let i = 0; i < sectionPlayer.length; i++) {
+    sectionPlayer[i].classList.toggle('player--active');
+  }
+}
+
 function switchPlayer() {
   if (currentPlayer === 0) {
     console.log('The current player is now 1');
     currentPlayer = 1;
+    togglePlayerSection();
   } else {
     console.log('The current player is now 0');
     currentPlayer = 0;
+    togglePlayerSection();
   }
 }
 
@@ -79,6 +88,7 @@ function checkWinner() {
 }
 
 function DiceRoll() {
+  dice.classList.remove('hidden');
   let randomNumber = Math.floor(Math.random() * 6) + 1;
   dice.src = `dice-${randomNumber}.png`;
   if (randomNumber !== 1) {
@@ -94,6 +104,7 @@ function DiceRoll() {
 }
 
 function resetGame() {
+  dice.classList.add('hidden');
   playersCurrentScore[0] = 0;
   playersCurrentScore[1] = 0;
   playersHoldScore[0] = 0;
