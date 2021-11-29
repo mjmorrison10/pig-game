@@ -13,20 +13,23 @@ const sectionPlayer = document.querySelectorAll('.player');
 let currentPlayer = 0;
 const playersCurrentScore = [0, 0];
 const playersHoldScore = [0, 0];
+let playing = true;
 
 playerOneScore.textContent = playersCurrentScore[0];
 playerTwoScore.textContent = playersCurrentScore[1];
 
 function holdScore() {
-  console.log('click');
-  playersHoldScore[currentPlayer] += playersCurrentScore[currentPlayer];
-  playerOneScore.textContent = playersHoldScore[0];
-  playerTwoScore.textContent = playersHoldScore[1];
-  playersCurrentScore[currentPlayer] = 0;
-  playerOne.textContent = 0;
-  playerTwo.textContent = 0;
-  switchPlayer();
-  checkWinner();
+  if (playing) {
+    console.log('click');
+    playersHoldScore[currentPlayer] += playersCurrentScore[currentPlayer];
+    playerOneScore.textContent = playersHoldScore[0];
+    playerTwoScore.textContent = playersHoldScore[1];
+    playersCurrentScore[currentPlayer] = 0;
+    playerOne.textContent = 0;
+    playerTwo.textContent = 0;
+    switchPlayer();
+    checkWinner();
+  }
 }
 
 function togglePlayerSection() {
@@ -65,30 +68,38 @@ function winnerWrapp() {
 
 function checkWinner() {
   if (playersHoldScore[0] >= 100) {
+    playing = false;
     winnerWrapper.style.display = 'flex';
     winnerWrapp();
+    dice.classList.add('hidden');
   } else if (playersHoldScore[1] >= 100) {
+    playing = false;
     winnerWrapper.style.display = 'flex';
     winnerWrapp();
+    dice.classList.add('hidden');
+
     // return;
   }
 }
 
 function DiceRoll() {
-  dice.classList.remove('hidden');
-  let randomNumber = Math.floor(Math.random() * 6) + 1;
-  dice.src = `dice-${randomNumber}.png`;
-  if (randomNumber !== 1) {
-    increasePoints(randomNumber);
-  } else if (randomNumber === 1) {
-    playersCurrentScore[currentPlayer] = 0;
-    playerOne.textContent = 0;
-    playerTwo.textContent = 0;
-    switchPlayer();
-  }
+  if (playing) {
+    dice.classList.remove('hidden');
+    let randomNumber = Math.floor(Math.random() * 6) + 1;
+    dice.src = `dice-${randomNumber}.png`;
+    if (randomNumber !== 1) {
+      increasePoints(randomNumber);
+    } else if (randomNumber === 1) {
+      playersCurrentScore[currentPlayer] = 0;
+      playerOne.textContent = 0;
+      playerTwo.textContent = 0;
+      switchPlayer();
+    }
 
-  return randomNumber;
+    return randomNumber;
+  }
 }
+
 
 function resetGame() {
   for (let i = 0; i < sectionPlayer.length; i++) {
@@ -97,7 +108,6 @@ function resetGame() {
       : sectionPlayer[i].classList.remove('player--active');
   }
 
-  dice.classList.add('hidden');
   playersCurrentScore[0] = 0;
   playersCurrentScore[1] = 0;
   playersHoldScore[0] = 0;
@@ -112,3 +122,8 @@ function resetGame() {
 rollDice.addEventListener('click', DiceRoll);
 holdBtn.addEventListener('click', holdScore);
 newGame.addEventListener('click', resetGame);
+
+
+
+
+
