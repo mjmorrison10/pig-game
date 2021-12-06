@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/0252bd3897.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Pig Game</title>
   </head>
   <body>
     <main>
+      <div class="question-icon">
+        <i class="far fa-question-circle"></i>
+      </div>
       <div class="winner-wrapper">
         <div class="winner"></div>
+      </div>
+      <div class="how-to-play-wrapper">
+        <div class="how-to-play">
+          <h1>How to play</h1>
+          <ol>
+            <li>Roll the dice.</li>
+            <li>If you land on 2-6, add points to your potential.</li>
+            <li>
+              However, if you land on 1, you lose all your potential, and switch
+              players.
+            </li>
+            <li>The objective of the game is to reach 100 points.</li>
+          </ol>
+        </div>
       </div>
       <section class="player player--0 player--active">
         <h2 class="name" id="name--0">Player 1</h2>
         <p class="score" id="score--0">43</p>
         <div class="current">
-          <p class="current-label">Current</p>
+          <p class="current-label">Potential</p>
           <p class="current-score" id="current--0">0</p>
         </div>
       </section>
@@ -24,7 +45,7 @@
         <h2 class="name" id="name--1">Player 2</h2>
         <p class="score" id="score--1">24</p>
         <div class="current">
-          <p class="current-label">Current</p>
+          <p class="current-label">Potential</p>
           <p class="current-score" id="current--1">0</p>
         </div>
       </section>

@@ -25,10 +25,15 @@ body {
 /* LAYOUT */
 
 .hidden {
-  display: none;
+  display: none!important;
 }
 
-.winner-wrapper {
+.show {
+  display: flex!important;
+}
+
+.winner-wrapper,
+.how-to-play-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +46,9 @@ body {
   z-index: 10;
 }
 
-.winner {
+
+.winner,
+.how-to-play {
   background-color: white;
   padding: 10vh 10vw;
   border-radius: 4px;
@@ -49,6 +56,11 @@ body {
   border: 1px solid black;
   font-weight: 900;
   font-size: 2rem;
+  text-align: center;
+}
+
+.how-to-play-wrapper h1 {
+  margin-bottom: 1rem;
 }
 
 main {
@@ -62,6 +74,15 @@ main {
   border-radius: 9px;
   overflow: hidden;
   display: flex;
+}
+
+.question-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .player {

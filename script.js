@@ -9,8 +9,17 @@ const playerTwoScore = document.querySelector('#score--1');
 const winnerWrapper = document.querySelector('.winner-wrapper');
 const newGame = document.querySelector('.btn--new');
 const sectionPlayer = document.querySelectorAll('.player');
+const questionIcon = document.querySelector('.question-icon');
+const questionWrapper = document.querySelector('.how-to-play-wrapper');
 
 let currentPlayer, playersCurrentScore, playersHoldScore, playing;
+
+function toggleShow() {
+  questionWrapper.classList.toggle('show');
+}
+
+questionIcon.addEventListener('click', toggleShow);
+questionWrapper.addEventListener('click', toggleShow);
 
 function resetGame() {
   for (let i = 0; i < sectionPlayer.length; i++) {
